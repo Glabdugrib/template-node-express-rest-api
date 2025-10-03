@@ -1,13 +1,19 @@
 #!/bin/sh
 set -e
 
-echo "Linting staged files..."
+# Colori ANSI
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+RESET='\033[0m'
+
+printf "\n${CYAN}Linting staged files...${RESET}\n"
 pnpm exec lint-staged
 
-echo "Type-checking project..."
+printf "\n${CYAN}Type-checking project...${RESET}\n"
 pnpm exec tsc --noEmit
 
-# echo "Running tests on staged files..."
+# Uncomment if you want staged tests
+# printf "\n${CYAN}Running tests on staged files...${RESET}\n"
 # pnpm test:staged
 
-echo "✅ Pre-commit checks passed!"
+printf "\n${GREEN}✅ Pre-commit checks passed!${RESET}\n\n"
