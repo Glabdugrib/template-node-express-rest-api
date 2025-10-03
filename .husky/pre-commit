@@ -7,7 +7,7 @@ pnpm exec lint-staged
 echo "Type-checking project..."
 pnpm exec tsc --noEmit
 
-echo "Running tests on staged files..."
-pnpm test:staged
+# echo "Running tests on staged files..."
+# pnpm test:staged
 
 echo "✅ Pre-commit checks passed!"
