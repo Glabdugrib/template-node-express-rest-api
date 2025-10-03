@@ -86,38 +86,32 @@ pnpm dev
 
 ## Production with Docker
 
-1. Build TypeScript:
-
-```bash
-pnpm build
-```
-
-2. Build Docker image:
+1. Build Docker image:
 
 ```bash
 docker build -t template-node-express-rest-api .
 ```
 
-3. Run production container:
+2. Run production container:
 
 ```bash
 docker run -d -p 3000:3000 --name node-ts-api template-node-express-rest-api
 ```
 
-4. Check logs:
+3. Check logs:
 
 ```bash
 docker logs -f node-ts-api
 ```
 
-5. Stop & remove container:
+4. Stop & remove container:
 
 ```bash
 docker stop node-ts-api
 docker rm node-ts-api
 ```
 
-> The Docker image contains **only compiled code and production dependencies** for a lightweight, secure deployment.
+> The Docker image uses **multi-stage build** to compile TypeScript and contains **only compiled code and production dependencies** for a lightweight, secure deployment.
 
 ---
 
@@ -142,6 +136,12 @@ pnpm format        # runs Prettier
 ```bash
 git add .
 git commit -m "your message"
+```
+
+- `*.ts` files → ESLint `--fix` + Prettier
+- `*.js` files → Prettier
+- Automatically re-adds changes to staged files.
+- Uses `pnpm exec` internally to ensure local binaries are used.
 ```
 
 - `*.ts` files → ESLint `--fix` + Prettier
